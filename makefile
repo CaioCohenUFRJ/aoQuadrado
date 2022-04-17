@@ -9,13 +9,3 @@ default: all
 
 ao_quadrado:
 	$(CC) -o $(EXEC) $(SOURCES) $(CFLAGS) $(LFLAGS)
-
-clean:
-	rm spac
-
-all:
-ifeq (ls | grep $(EXEC), $(EXEC))
-	clean $(CC) -o $(EXEC) $(SOURCES) $(CFLAGS) $(LFLAGS)
-else
-	$(CC) -o $(EXEC) $(SOURCES) $(CFLAGS) $(LFLAGS)
-endif
