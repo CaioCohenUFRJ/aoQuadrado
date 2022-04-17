@@ -1,0 +1,41 @@
+EX1: A ordem de criação das threads sem mantém sempre a mesma , primeiro cria a 0, depois 1 e por aí vai(já que isso é dentro do fluxo principal).
+ Já em relação a ordem de execucação das threads,
+como todas as threads apenas printam "hello world", não da para saber qual thread está fazendo cada print. Porém, o que pode-se notar,
+é que a execução das threads e a execução do fluxo principal (que cria as threads) não segue uma ordem fixa, pois não há nenhum mecanismo de sincronização
+entre as threads integrada no programa. Por causa disso, não tem como prever o que vai vir primeiro, o print do "Cria a thread x" ou "Hello World". 
+
+EX2: O comportamento dessa vez é similar ao anterior, com uma diferença, agora a gente pode saber qual thread fez qual print, pois tem uma variável
+que está sendo passada sempre que um thread é criada, em ordem crescente, para elas. Ou seja, a primeira thread a ser criada terá como parametro 0,
+a segunda 1 e assim por diante. De novo, não há uma ordem especifica do fluxo de execucação entre as novas threads e o fluxo principal, porém,
+eu executei várias vezes o programa e parece que, em relação a ordem das threads criadas, elas sempre printam em ordem crescente. Segue um exemplo:
+--Cria a thread 0
+--Cria a thread 1
+Hello World da thread: 0
+--Cria a thread 2
+Hello World da thread: 1
+--Cria a thread 3
+Hello World da thread: 2
+--Cria a thread 4
+Hello World da thread: 3
+--Cria a thread 5
+Hello World da thread: 4
+--Cria a thread 6
+Hello World da thread: 5
+--Cria a thread 7
+Hello World da thread: 6
+--Cria a thread 8
+Hello World da thread: 7
+Hello World da thread: 8
+--Cria a thread 9
+--Thread principal terminou
+Hello World da thread: 9
+
+EX3:Não, pois há um erro de lógica no programa. Realmente 10 threads, além da principal, foram executadas, mas como o indice de repetição começa em 
+0, acabou que a décima thread falou "sou a thread 9 de 10 threads".
+
+EX4:Dessa vez, como o fluxo principal espera todas as outras threads terminarem, o print de que ela terminou vai ser sempre o ultimo print, o
+que não aocntecia antes. Porém, como ja foi falado anteriormente, eu percebi que mesmo depois de eu executar o programa multiplas vezes, a ordem das
+de execucação das threads criadas sempre se mantém, então o comportamento é o mesmo se colocarmos a thread principal para esperar apenas a ultima thread
+terminar.
+
+EX5:
