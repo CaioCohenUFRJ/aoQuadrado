@@ -19,7 +19,7 @@ typedef struct {
 void *elevarAoQuadrado (void *arg) {
 
   t_Args* argumento = (t_Args *) arg;
-  for(int i = argumento->indexComeco; i < 1000; i += 3){
+  for(int i = argumento->indexComeco; i < 10000; i += 3){
     argumento->vetor[i] = pow(argumento->vetor[i], 2);
   }
   free(arg); //aqui pode liberar a alocacao feita na main
@@ -30,9 +30,9 @@ void *elevarAoQuadrado (void *arg) {
 int main(void) {
   pthread_t tid_sistema[NTHREADS]; //identificadores das threads no sistema
   int thread; //variavel auxiliar
-  int vetor[1000];
+  int vetor[10000];
   t_Args* argumento;
-  for(int i = 0; i < 1000; i++){ //apenas para que tenhamos uma forma fácil de analisar
+  for(int i = 0; i < 10000; i++){ //apenas para que tenhamos uma forma fácil de analisar
     vetor[i] = i; 
   }
   for(thread=0; thread<NTHREADS; thread++) {
@@ -43,7 +43,7 @@ int main(void) {
       printf("--ERRO: pthread_create()\n"); exit(-1);
     }
   }
-  for(int i = 0; i < 1000; i += 3){
+  for(int i = 0; i < 10000; i += 3){
     argumento->vetor[i] = pow(argumento->vetor[i], 2);;
   }
   for (thread=0; thread<NTHREADS; thread++) {
@@ -51,7 +51,7 @@ int main(void) {
          printf("--ERRO: pthread_join() \n"); exit(-1); 
     } 
   }
-  for(int i = 0; i < 1000; i++){ 
+  for(int i = 0; i < 10000; i++){ 
     printf("%d\n", vetor[i]); 
   }
   printf("--Thread principal terminou\n");
